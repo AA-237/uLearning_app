@@ -71,7 +71,13 @@ Widget reusableText(String text) {
   );
 }
 
-Widget buildTextField(String hintText, String textType, String iconName) {
+Widget buildTextField(
+  String hintText,
+  String textType,
+  String iconName,
+  // passing a function as shown below with the data being passed in it
+  void Function(String value)? func,
+) {
   return Container(
     width: 325.w,
     height: 50.h,
@@ -93,6 +99,8 @@ Widget buildTextField(String hintText, String textType, String iconName) {
           width: 270.w,
           height: 70.w,
           child: TextField(
+            // passing the function to the text field using onchange
+            onChanged: (value) => func!(value),
             keyboardType: TextInputType.multiline,
             decoration: InputDecoration(
               hintText: hintText,
@@ -164,8 +172,8 @@ Widget buildLogInAndRegBtn(String buttonName, String btnType) {
       width: 325.w,
       height: 50.h,
       decoration: BoxDecoration(
-        // check for btn type and assign correct colors to it. 
-        // making use of tenarry operation
+          // check for btn type and assign correct colors to it.
+          // making use of tenarry operation
           color: btnType == "login"
               ? AppColors.primaryElement
               : AppColors.primaryBackground,
@@ -189,7 +197,7 @@ Widget buildLogInAndRegBtn(String buttonName, String btnType) {
           style: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.normal,
-            // check text colors with respect to btn type 
+            // check text colors with respect to btn type
             color: btnType == "login"
                 ? AppColors.primaryBackground
                 : AppColors.primaryText,

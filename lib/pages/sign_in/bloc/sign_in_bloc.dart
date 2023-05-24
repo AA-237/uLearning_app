@@ -23,10 +23,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInStates> {
 
   //  handlers seperated from the on methos
   void _emailEvent(EmailEvent event, Emitter<SignInStates> emit) {
+    print('my email is ${event.email}');
     emit(state.copyWith(email: event.email));
   }
 
     void _passwordEvent(PasswordEvent event, Emitter<SignInStates> emit) {
+      print('my email is ${event.password}');
     emit(state.copyWith(password: event.password));
   }
 }

@@ -41,17 +41,18 @@ class _SignInState extends State<SignIn> {
                         ),
                         buildTextField(
                             "Enter your email address", 'email', 'user',
-                            
-                            // (value) {
-                            //   context.read<SignInBloc>().add(EmailEvent(value));
-                            // }
-                            ),
+                            // method to get value and pass to required field (callback function )
+                            (value) {
+                          context.read<SignInBloc>().add(EmailEvent(value));
+                        }),
                         reusableText("Password"),
                         SizedBox(
                           height: 5.h,
                         ),
                         buildTextField(
-                            "Enter your password", 'password', 'lock'),
+                            "Enter your password", 'password', 'lock', (value) {
+                          context.read<SignInBloc>().add(PasswordEvent(value));
+                        }),
                         forgotPassword(),
                         buildLogInAndRegBtn("Log In", "login"),
                         buildLogInAndRegBtn("Register", "register"),
