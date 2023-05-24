@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,12 +6,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/app_bloc.dart';
 import 'package:ulearning_app/app_events.dart';
 import 'package:ulearning_app/app_state.dart';
+import 'package:ulearning_app/pages/sign_in/bloc/sign_in_bloc.dart';
 
 import 'pages/sign_in/sign_in.dart';
 import 'pages/welcome/bloc/welcome_bloc.dart';
 import 'pages/welcome/welcome.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -23,14 +29,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       // multiprovider enables us to have different blocs within an app
       providers: [
+        BlocProvider(create: (context) => WelcomeBloc()),
         BlocProvider(
-          create: (context) => WelcomeBloc(),
-        ),
-        BlocProvider(
-          // lazy: false means the screen/ bloc  should be loaded as soon as possible
-          // plus it is very memory efficient
-          create: (context) => AppBlocs(),
-        ),
+            // lazy: false means the screen/ bloc  should be loaded as soon as possible
+            // plus it is very memory efficient
+            create: (context) => AppBlocs()),
+        BlocProvider(create: (context) => SignInBloc())
       ],
       child: ScreenUtilInit(
         builder: (context, child) => MaterialApp(
@@ -44,8 +48,8 @@ class MyApp extends StatelessWidget {
 
           /// routes for the app
           routes: {
-            "myHomePage":(context) =>const  MyHomePage(),
-            "signIn":(context) => const SignIn(),
+            "myHomePage": (context) => const MyHomePage(),
+            "signIn": (context) => const SignIn(),
           },
         ),
       ),

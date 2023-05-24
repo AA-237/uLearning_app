@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1023982437676:android:02cdcba33826083dc79889",
+        "mobilesdk_app_id": "1:1023982437676:android:3391bc1baeec0700c79889",
         "android_client_info": {
-          "package_name": "com.anderson.ulearning_app"
+          "package_name": "com.example.ulearning_app"
         }
       },
       "oauth_client": [
