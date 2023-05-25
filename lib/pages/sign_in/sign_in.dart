@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/sign_in_bloc.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/sign_in_events.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/signin_states.dart';
+import 'package:ulearning_app/pages/sign_in/sign_in_controller.dart';
 
 import 'widgets/sign_in_widget.dart';
 
@@ -54,8 +55,14 @@ class _SignInState extends State<SignIn> {
                           context.read<SignInBloc>().add(PasswordEvent(value));
                         }),
                         forgotPassword(),
-                        buildLogInAndRegBtn("Log In", "login"),
-                        buildLogInAndRegBtn("Register", "register"),
+                        buildLogInAndRegBtn(
+                          "Log In",
+                          "login",
+                          () {
+                            SignInController(context: context).handleSignIn('email');
+                          }
+                        ),
+                        buildLogInAndRegBtn("Register", "register", () {}),
                       ],
                     ),
                   )
