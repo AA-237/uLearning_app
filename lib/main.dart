@@ -6,9 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:ulearning_app/pages/bloc_providers.dart';
 
+import 'pages/application/application_page.dart';
 import 'pages/register/register.dart';
 import 'pages/sign_in/sign_in.dart';
-import 'pages/welcome/welcome.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const Welcome(),
+          home: const ApplicationPage(),
 
           /// routes for the app
           routes: {
