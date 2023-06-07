@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'common/routes/routes.dart';
 
-import 'package:ulearning_app/pages/bloc_providers.dart';
 
-import 'pages/application/application_page.dart';
-import 'pages/register/register.dart';
-import 'pages/sign_in/sign_in.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,12 +18,13 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  // This widget is the root of your application. 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       // multiprovider enables us to have different blocs within an app
-      providers: AppBlocProviders.allBlocProviders,
+      // providers: AppBlocProviders.allBlocProviders,
+      providers: [...AppPages.allBlocProviders(context)],
       child: ScreenUtilInit(
         builder: (context, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -35,14 +33,8 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const ApplicationPage(),
+           onGenerateRoute: AppPages.GenerateRoutesSettings,
 
-          /// routes for the app
-          routes: {
-            // "myHomePage": (context) => const MyHomePage(),
-            "signIn": (context) => const SignIn(),
-            "register":(context) => const Register(),
-          },
         ),
       ),
     );
