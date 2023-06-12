@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/common/values/colors.dart';
+import 'package:ulearning_app/common/values/constant.dart';
 
 import 'package:ulearning_app/pages/welcome/bloc/welcome_bloc.dart';
 import 'package:ulearning_app/pages/welcome/bloc/welcome_events.dart';
 import 'package:ulearning_app/pages/welcome/bloc/welcome_state.dart';
+
+import '../../global.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -150,6 +153,9 @@ class _WelcomeState extends State<Welcome> {
               //Navigator.of(context).push(
                // MaterialPageRoute(builder: (context) => const MyHomePage()),
               //);
+              
+              // remembring  and setting the value
+              Global.storageServices.setBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME, true);
               Navigator.of(context).pushNamedAndRemoveUntil("/sign_in", (route) => false);
             }
           },

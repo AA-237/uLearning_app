@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ulearning_app/common/values/constant.dart';
 import 'package:ulearning_app/common/widgtes/flutter_toast.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/sign_in_bloc.dart';
+
+import '../../global.dart';
 
 class SignInController {
   final BuildContext context;
@@ -49,6 +52,8 @@ class SignInController {
           if (user != null) {
             // we got verrified user from firebase
             print("user exist");
+            Global.storageServices.setString(AppConstants.STORAGE_USER_TOKEN_KEY, '12345678');
+            Navigator.of(context).pushNamedAndRemoveUntil('/application', (route) => false);
           } else {
             // we got error verifying user from firebase
             toastInfo(msg: "Currently not a user of this app");

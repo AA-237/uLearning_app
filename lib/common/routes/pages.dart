@@ -5,6 +5,9 @@ import 'package:ulearning_app/common/routes/names.dart';
 import 'package:ulearning_app/pages/welcome/bloc/welcome_bloc.dart';
 import 'package:ulearning_app/pages/welcome/welcome.dart';
 
+import '../../global.dart';
+import '../../pages/application/application_page.dart';
+import '../../pages/application/bloc/app_blocs.dart';
 import '../../pages/register/bloc/register_blocs.dart';
 import '../../pages/register/register.dart';
 import '../../pages/sign_in/bloc/sign_in_bloc.dart';
@@ -29,11 +32,11 @@ class AppPages {
         page: const Register(),
         bloc: BlocProvider(create: (_) => RegisterBlocs()),
       ),
-      // PageEntity(
-      //   route: AppRoutes.INITIAL,
-      //   page: const Welcome(),
-      //   // bloc: BlocProvider(create: (_) => WelcomeBloc()),
-      // )
+      PageEntity(
+        route: AppRoutes.APPLICATION,
+        page: const ApplicationPage(),
+        bloc: BlocProvider(create: (_) => AppBlocs()),
+      )
     ];
   }
 
@@ -54,7 +57,15 @@ class AppPages {
       // checking for routes name matching when the navigator gets triggered
       var result = routes().where((element) => element.route == settings.name);
       if (result.isNotEmpty) {
-        print("valide route name ${settings.name}");
+        // checking for device first open option
+        bool deviceFirstOpen = Global.storageServices.getDeviceFirstOpen();
+        if(result.first.route==AppRoutes.INITIAL&&deviceFirstOpen) {
+          bool isLoggedin = Global.storageServices.getIsLoggedIn();
+          if(isLoggedin) {
+            return MaterialPageRoute(builder: (_) => const ApplicationPage(), settings: settings);
+          }
+          return MaterialPageRoute(builder: (_) => const SignIn(), settings: settings);
+        }
         return MaterialPageRoute(
           builder: (_) => result.first.page,
           settings: settings,
