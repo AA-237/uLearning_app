@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/pages/register/bloc/register_events.dart';
 import 'package:ulearning_app/pages/register/register_controller.dart';
 
-import '../common_widgets.dart';
+import '../sign_in/widgets/sign_in_widget.dart';
 import 'bloc/register_blocs.dart';
 import 'bloc/register_state.dart';
 

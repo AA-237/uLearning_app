@@ -5,8 +5,8 @@ import 'package:ulearning_app/pages/sign_in/bloc/sign_in_bloc.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/sign_in_events.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/signin_states.dart';
 import 'package:ulearning_app/pages/sign_in/sign_in_controller.dart';
+import 'package:ulearning_app/pages/sign_in/widgets/sign_in_widget.dart';
 
-import '../common_widgets.dart';
 
 
 class SignIn extends StatefulWidget {
