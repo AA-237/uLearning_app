@@ -22,10 +22,10 @@ class MyApp extends StatelessWidget {
       // providers: AppBlocProviders.allBlocProviders,
       providers: [...AppPages.allBlocProviders(context)],
       child: ScreenUtilInit(
-        // designSize: const Size(374, 812),
+        designSize: const Size(374, 812),
         builder: (context, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'uLearning App',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,

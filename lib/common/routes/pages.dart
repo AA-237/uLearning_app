@@ -8,6 +8,8 @@ import 'package:ulearning_app/pages/welcome/welcome.dart';
 import '../../global.dart';
 import '../../pages/application/application_page.dart';
 import '../../pages/application/bloc/app_blocs.dart';
+import '../../pages/home/bloc/home_page_bloc.dart';
+import '../../pages/home/home_page.dart';
 import '../../pages/register/bloc/register_blocs.dart';
 import '../../pages/register/register.dart';
 import '../../pages/sign_in/bloc/sign_in_bloc.dart';
@@ -36,6 +38,11 @@ class AppPages {
         route: AppRoutes.APPLICATION,
         page: const ApplicationPage(),
         bloc: BlocProvider(create: (_) => AppBlocs()),
+      ),
+      PageEntity(
+        route: AppRoutes.HOME_PAGE,
+        page: const HomePage(),
+        bloc: BlocProvider(create: (_) => HomePageBlocs()),
       )
     ];
   }
@@ -59,12 +66,14 @@ class AppPages {
       if (result.isNotEmpty) {
         // checking for device first open option
         bool deviceFirstOpen = Global.storageServices.getDeviceFirstOpen();
-        if(result.first.route==AppRoutes.INITIAL&&deviceFirstOpen) {
+        if (result.first.route == AppRoutes.INITIAL && deviceFirstOpen) {
           bool isLoggedin = Global.storageServices.getIsLoggedIn();
-          if(isLoggedin) {
-            return MaterialPageRoute(builder: (_) => const ApplicationPage(), settings: settings);
+          if (isLoggedin) {
+            return MaterialPageRoute(
+                builder: (_) => const ApplicationPage(), settings: settings);
           }
-          return MaterialPageRoute(builder: (_) => const SignIn(), settings: settings);
+          return MaterialPageRoute(
+              builder: (_) => const SignIn(), settings: settings);
         }
         return MaterialPageRoute(
           builder: (_) => result.first.page,
@@ -73,7 +82,8 @@ class AppPages {
       }
     }
     print("Invalide route name ${settings.name}");
-    return MaterialPageRoute(builder: (_) => const SignIn(), settings: settings);
+    return MaterialPageRoute(
+        builder: (_) => const SignIn(), settings: settings);
   }
 }
 

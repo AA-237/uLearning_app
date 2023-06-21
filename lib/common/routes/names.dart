@@ -8,6 +8,8 @@ class AppRoutes {
   static const REGISTER = "/register";
   // application page
   static const APPLICATION = "/application";
+  // navigation home page screens
+  static const HOME_PAGE = "/home_page";
 }
 
 // CONTAIINS VERIOUS ROUTE NAMES

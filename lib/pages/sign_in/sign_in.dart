@@ -56,6 +56,7 @@ class _SignInState extends State<SignIn> {
                           context.read<SignInBloc>().add(PasswordEvent(value));
                         }),
                         forgotPassword(),
+                        SizedBox(height: 70.h,),
                         buildLogInAndRegBtn(
                           "Log In",
                           "login",
