@@ -24,23 +24,46 @@ class _HomePageState extends State<HomePage> {
           BlocBuilder<HomePageBlocs, HomePageStates>(builder: (context, state) {
         return Container(
           margin: EdgeInsets.symmetric(vertical: 0, horizontal: 25.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              homePageText(
-                "Hello",
-                color: AppColors.primaryThirdElementText,
+          child: CustomScrollView(
+            // slivers gives better control how to do animation and scrolling
+            // and are not widgets have performace optimsie and griddings
+            slivers: [
+              SliverToBoxAdapter(
+                child: homePageText(
+                  "Hello",
+                  color: AppColors.primaryThirdElementText,
+                ),
               ),
-              homePageText(
-                "Anderson",
-                top: 5,
+              SliverToBoxAdapter(
+                child: homePageText(
+                  "Anderson",
+                  top: 5,
+                ),
               ),
-              SizedBox(
-                height: 20.h,
+              SliverPadding(padding: EdgeInsets.only(top: 20.h)),
+              SliverToBoxAdapter(child: searchView()),
+              SliverToBoxAdapter(child: slidersView(context, state)),
+              SliverToBoxAdapter(child: menuView()),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 18.h,
+                  horizontal: 0.w,
+                ),
+                sliver: SliverGrid(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 15,
+                      crossAxisSpacing: 15,
+                      childAspectRatio: 1.6),
+                  delegate: SliverChildBuilderDelegate(childCount: 4,
+                      (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {},
+                      child: courseGrid(),
+                    );
+                  }),
+                ),
               ),
-              searchView(),
-              slidersView(context, state),
-              menuView(),
             ],
           ),
         );
