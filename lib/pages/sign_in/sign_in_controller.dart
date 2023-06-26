@@ -52,7 +52,7 @@ class SignInController {
           if (user != null) {
             // we got verrified user from firebase
             print("user exist");
-            Global.storageServices.setString(AppConstants.STORAGE_USER_TOKEN_KEY, '12345678');
+            Global.storageServices.setString(AppConstants.STORAGE_USER_TOKEN_KEY, '12345678'); // storing user information in our local storage
             Navigator.of(context).pushNamedAndRemoveUntil('/application', (route) => false);
           } else {
             // we got error verifying user from firebase
@@ -74,6 +74,6 @@ class SignInController {
           }
         }
       }
-    } catch (e) {}
-  }
+    // ignore: empty_catches
+    } catch (e) {}}
 }

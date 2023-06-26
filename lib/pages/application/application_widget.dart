@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../common/values/colors.dart';
 import '../home/home_page.dart';
+import '../profile/profile.dart';
 
 Widget buildPage(int index) {
   List<Widget> _widgets = [
@@ -10,7 +11,7 @@ Widget buildPage(int index) {
     Center(child: Text("Search")),
     Center(child: Text("Course")),
     Center(child: Text("Chat")),
-    Center(child: Text("Profile")),
+    const ProfilePage(),
   ];
 
   return _widgets[index];
