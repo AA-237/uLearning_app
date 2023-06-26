@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ulearning_app/common/routes/routes.dart';
 import 'package:ulearning_app/common/values/constant.dart';
+import 'package:ulearning_app/pages/application/bloc/app_blocs.dart';
+import 'package:ulearning_app/pages/application/bloc/app_events.dart';
 
 import '../../../global.dart';
 import 'bloc/setting_states.dart';
@@ -18,8 +20,10 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   // function that links both user data and route them to the signIn page
   void removeUserData() {
-        Global.storageServices.remove(AppConstants.STORAGE_USER_TOKEN_KEY);
-        Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.SIGN_IN, (route) => false) ; 
+    context.read<AppBlocs>().add(const TriggerAppEvent(0)); // permits the user to land on the home page after he logging in
+    Global.storageServices.remove(AppConstants.STORAGE_USER_TOKEN_KEY);
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil(AppRoutes.SIGN_IN, (route) => false);
   }
 
   @override
@@ -32,9 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
           builder: (context, state) {
             return Container(
               child: Column(
-                children: [
-                  setttingButton(context, removeUserData)
-                ],
+                children: [setttingButton(context, removeUserData)],
               ),
             );
           },

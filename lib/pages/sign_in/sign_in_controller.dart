@@ -75,5 +75,7 @@ class SignInController {
         }
       }
     // ignore: empty_catches
-    } catch (e) {}}
+    } catch (e) {
+      toastInfo(msg: '$e');
+    }}
 }

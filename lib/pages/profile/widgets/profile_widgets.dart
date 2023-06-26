@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/common/routes/names.dart';
 import 'package:ulearning_app/common/values/colors.dart';
 
+import '../../../common/widgtes/base_text_widget.dart';
+
 AppBar buildProfileAppBar() {
   return AppBar(
     title: Container(
@@ -14,13 +16,7 @@ AppBar buildProfileAppBar() {
             width: 18.w,
             child: Image.asset('assets/icons/menu.png'),
           ),
-          Text(
-            'Profile',
-            style: TextStyle(
-                color: AppColors.primaryText,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold),
-          ),
+          reusableText('Profile'),
           SizedBox(
             height: 22.h,
             width: 24.w,
@@ -67,7 +63,8 @@ Widget buildListView(BuildContext context) {
       ...List.generate(
           imagesInfo.length,
           (index) => GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed(AppRoutes.SETTINGS),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRoutes.SETTINGS),
                 child: Container(
                   margin: EdgeInsets.only(bottom: 15.h),
                   child: Row(
@@ -79,7 +76,8 @@ Widget buildListView(BuildContext context) {
                         decoration: BoxDecoration(
                             color: AppColors.primaryElement,
                             borderRadius: BorderRadius.circular(10.w)),
-                        child: Image.asset('assets/icons/${imagesInfo.values.elementAt(index)}'),
+                        child: Image.asset(
+                            'assets/icons/${imagesInfo.values.elementAt(index)}'),
                       ),
                       SizedBox(
                         width: 15.w,

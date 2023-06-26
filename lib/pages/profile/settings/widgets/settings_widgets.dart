@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ulearning_app/common/values/colors.dart';
+
+import '../../../../common/widgtes/base_text_widget.dart';
 
 AppBar buildSettingsAppBar() {
   return AppBar(
     title: Container(
       child: Container(
-        child: Text(
-          'Settings',
-          style: TextStyle(
-              color: AppColors.primaryText,
-              fontWeight: FontWeight.bold,
-              fontSize: 16.sp),
-        ),
+        child: reusableText('Settings')
       ),
     ),
   );
